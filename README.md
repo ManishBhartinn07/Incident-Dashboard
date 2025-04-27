@@ -14,16 +14,16 @@ Styling: Tailwind CSS
 
 Getting Started
 1. Clone the repository
-git clone https://github.com/manishbhartinn07/ai-safety-incident-dashboard.git
-cd ai-safety-incident-dashboard
+git clone https://github.com/ManishBhartinn07/Incident-Dashboard.git
+cd incident_dashboard
 
 2. Install dependencies
 npm install
 This will install:
 React, React DOM ,Vite (development server and build tool), TypeScript, Tailwind CSS (with PostCSS and Autoprefixer)
 
-3. Run the development server
-npm run dev
+3. Run the development server: 
+---->npm run dev
 Project will be live at http://localhost:5173 (default Vite port).
 
 4.Build for Production:
