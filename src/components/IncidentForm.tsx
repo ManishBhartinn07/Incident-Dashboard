@@ -1,95 +1,77 @@
-import React, { useState } from "react";
-import { Incident } from "../types/Incident";
+import React, { useState } from 'react';
+import { Incident } from '../types';
 
-interface IncidentFormProps {
-  onAddIncident: (newIncident: Incident) => void;
-}
+type IncidentFormProps = {
+  onAddIncident: (incident: Incident) => void;
+};
 
 const IncidentForm: React.FC<IncidentFormProps> = ({ onAddIncident }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [severity, setSeverity] = useState<"Low" | "Medium" | "High">("Low");
-  const [error, setError] = useState("");
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [severity, setSeverity] = useState<'Low' | 'Medium' | 'High'>('Low');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate input fields
-    if (!title.trim() || !description.trim()) {
-      setError("Both Title and Description are required.");
-      return;
-    }
-
     const newIncident: Incident = {
-      id: Date.now(), // Unique ID based on timestamp
+      id: Date.now(),
       title,
       description,
       severity,
-      reported_at: new Date().toISOString(), // Auto-generate reported date
+      date: new Date().toISOString().split('T')[0],
     };
 
     onAddIncident(newIncident);
-    resetForm();
-  };
-
-  const resetForm = () => {
-    setTitle("");
-    setDescription("");
-    setSeverity("Low");
-    setError("");
+    setTitle('');
+    setDescription('');
+    setSeverity('Low');
   };
 
   return (
-    <div className="border rounded-lg p-6 shadow-sm mb-6 bg-white">
-      <h2 className="text-xl font-semibold mb-4">Report New Incident</h2>
-      {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
-          <input
-            id="title"
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="mt-1 p-2 w-full border rounded-md shadow-sm"
-            placeholder="Enter incident title"
-          />
-        </div>
+    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md space-y-4">
+      <h2 className="text-2xl font-bold mb-4 text-center">Report New Incident</h2>
 
-        <div className="mb-4">
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="mt-1 p-2 w-full border rounded-md shadow-sm"
-            placeholder="Enter incident description"
-            rows={4}
-          />
-        </div>
+      <div>
+        <label className="block text-gray-700 mb-1">Title</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full border rounded-md p-2"
+          required
+        />
+      </div>
 
-        <div className="mb-4">
-          <label htmlFor="severity" className="block text-sm font-medium text-gray-700">Severity</label>
-          <select
-            id="severity"
-            value={severity}
-            onChange={(e) => setSeverity(e.target.value as "Low" | "Medium" | "High")}
-            className="mt-1 p-2 w-full border rounded-md shadow-sm"
-          >
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-        </div>
+      <div>
+        <label className="block text-gray-700 mb-1">Description</label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="w-full border rounded-md p-2"
+          required
+        ></textarea>
+      </div>
 
-        <button
-          type="submit"
-          className="w-full p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200"
+      <div>
+        <label className="block text-gray-700 mb-1">Severity</label>
+        <select
+          value={severity}
+          onChange={(e) => setSeverity(e.target.value as 'Low' | 'Medium' | 'High')}
+          className="w-full border rounded-md p-2"
         >
-          Report Incident
-        </button>
-      </form>
-    </div>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </div>
+
+      <button
+        type="submit"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition-all"
+      >
+        Submiting
+      </button>
+    </form>
   );
 };
 

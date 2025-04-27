@@ -2,61 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global body styling */
 body {
   @apply bg-gray-100 text-gray-900 font-sans;
 }
 
-/* Buttons */
 button {
   @apply transition-colors duration-200 ease-in-out rounded px-4 py-2;
 }
 
-/* Form inputs */
 input,
 textarea,
 select {
   @apply border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500;
 }
 
-/* Incident card upgrades */
-/* .incident-card {
-  @apply bg-white p-6 rounded-xl shadow-lg border border-gray-200 mb-6 transform transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-2xl animate-fadeIn;
-} */
 .incident-card {
-  @apply bg-white p-4 rounded-lg mb-4 transition-shadow duration-300 shadow-lg hover:shadow-2xl border border-gray-200;
+  @apply bg-blue-50 p-6 rounded-lg mb-4 transition hover:shadow-2xl hover:bg-blue-100 cursor-pointer transform hover:scale-105 duration-300 ease-in-out;
 }
 
-/* Severity badges */
-.badge {
-  @apply inline-block px-3 py-1 text-xs font-semibold rounded-full;
-}
-.badge-low {
-  @apply bg-green-100 text-green-800;
-}
-.badge-medium {
-  @apply bg-yellow-100 text-yellow-800;
-}
-.badge-high {
-  @apply bg-red-100 text-red-800;
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
 }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.animate-fadeIn {
-  animation: fadeIn 0.4s ease-in-out;
+.animate-glitch {
+  animation: glitch 1s infinite;
 }
 
-/* Form wrapper */
 .form-section {
-  @apply bg-white p-6 rounded-xl shadow-lg border border-gray-200 mb-6;
+  @apply bg-white p-6 rounded-lg shadow-md mb-6 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg;
+}
+
+/* Button Enhancements */
+button[type="submit"] {
+  @apply bg-gradient-to-r from-green-500 to-blue-600 text-white font-semibold rounded-lg shadow-md hover:shadow-xl transition-all duration-300;
+}
+
+select:hover {
+  @apply bg-gray-200;
+}
+
+/* Hover Effects for All Select and Input Elements */
+input:hover, textarea:hover, select:hover {
+  @apply border-blue-500;
+}
+
+/* Added Gradient Background for Section */
+.bg-gradient-custom {
+  background: linear-gradient(135deg, #00bcd4, #19181a);
+}
+
+/* Floating action button */
+.fab {
+  @apply fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg transition-all duration-300 ease-in-out hover:bg-green-600 hover:scale-105;
+}
+
+.fab:hover {
+  transform: translateY(-5px);
 }

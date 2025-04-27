@@ -12,7 +12,8 @@ const FilterSortControls: React.FC<FilterSortControlsProps> = ({ onSort, onFilte
       <div>
         <button
           onClick={() => onSort("newest")}
-          className="bg-blue-500 text-white px-4 py-2 mr-2 rounded"
+          // className="bg-blue-500 text-white px-4 py-2 mr-2 rounded"
+          className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
         >
           Sort by Newest
         </button>
