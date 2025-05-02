@@ -18,12 +18,12 @@ git clone https://github.com/ManishBhartinn07/Incident-Dashboard.git
 cd incident_dashboard
 
 2. Install dependencies
-npm install
+---->"npm install"
 This will install:
 React, React DOM ,Vite (development server and build tool), TypeScript, Tailwind CSS (with PostCSS and Autoprefixer)
 
 3. Run the development server: 
----->npm run dev
+---->"npm run dev"
 Project will be live at http://localhost:5173 (default Vite port).
 
 4.Build for Production:
